@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname)));
 
 // メインページの提供
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'Proxy.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // プロキシリクエストを処理するエンドポイント
