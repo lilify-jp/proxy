@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Proxy</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Web Proxy - 安定版</title>
+    <link rel="stylesheet" href="styles-improved.css">
 </head>
 <body>
     <div class="container">
-        <h1>Web Proxy</h1>
+        <h1>Web Proxy - 安定版</h1>
         <div class="proxy-form">
             <div class="url-input">
                 <input type="text" id="url-input" placeholder="https://example.com">
@@ -28,25 +28,28 @@
             <h3>オプション設定</h3>
             <div class="option">
                 <label for="remove-scripts">スクリプトを削除:</label>
-                <input type="checkbox" id="remove-scripts">
+                <input type="checkbox" id="remove-scripts" checked>
+                <span class="option-description">JavaScriptを削除してセキュリティを向上（推奨）</span>
             </div>
             <div class="option">
                 <label for="remove-frames">フレームを削除:</label>
-                <input type="checkbox" id="remove-frames">
+                <input type="checkbox" id="remove-frames" checked>
+                <span class="option-description">iframeを削除してパフォーマンスを向上（推奨）</span>
             </div>
             <div class="option">
                 <label for="user-agent">User Agent:</label>
                 <select id="user-agent">
                     <option value="default">デフォルト</option>
                     <option value="mobile">モバイル</option>
-                    <option value="desktop">デスクトップ</option>
+                    <option value="desktop" selected>デスクトップ</option>
                     <option value="custom">カスタム</option>
                 </select>
                 <input type="text" id="custom-user-agent" placeholder="カスタムUser Agent" disabled>
             </div>
             <div class="option">
                 <label for="timeout">タイムアウト (秒):</label>
-                <input type="number" id="timeout" min="5" max="60" value="30">
+                <input type="number" id="timeout" min="5" max="120" value="60">
+                <span class="option-description">大きなサイトには60秒以上を推奨</span>
             </div>
         </div>
 
@@ -60,20 +63,19 @@
             <h3>サーバーの起動方法</h3>
             <p>このプロキシを使用するには、まずサーバーを起動する必要があります：</p>
             <div class="instruction-tabs">
-                <button class="tab-btn active" data-tab="windows">Windows</button>
-                <button class="tab-btn" data-tab="mac">Mac/Linux</button>
+                <button class="tab-btn active" data-tab="stable">安定版（推奨）</button>
+                <button class="tab-btn" data-tab="normal">通常版</button>
                 <button class="tab-btn" data-tab="manual">手動</button>
             </div>
-            <div class="tab-content active" id="windows-tab">
+            <div class="tab-content active" id="stable-tab">
+                <p><code>stable-proxy.bat</code> ファイルをダブルクリックしてサーバーを起動します。</p>
+                <p>これは安定性が向上した起動方法で、エラーが発生しにくくなります。</p>
+            </div>
+            <div class="tab-content" id="normal-tab">
                 <p><code>start-proxy.bat</code> ファイルをダブルクリックしてサーバーを起動します。</p>
             </div>
-            <div class="tab-content" id="mac-tab">
-                <p>ターミナルで以下のコマンドを実行します：</p>
-                <pre><code>chmod +x start-proxy.sh
-./start-proxy.sh</code></pre>
-            </div>
             <div class="tab-content" id="manual-tab">
-                <p>コマンドプロンプトまたはターミナルで以下のコマンドを実行します：</p>
+                <p>コマンドプロンプトで以下のコマンドを実行します：</p>
                 <pre><code>cd "プロジェクトのパス"
 npm install
 npm start</code></pre>
@@ -88,7 +90,12 @@ npm start</code></pre>
             <iframe id="proxy-frame" sandbox="allow-same-origin allow-scripts" class="hidden"></iframe>
             <div id="proxy-content" class="hidden"></div>
         </div>
+        
+        <div class="footer">
+            <p>エラーが発生する場合は、「スクリプトを削除」と「フレームを削除」オプションをオンにしてみてください。</p>
+            <p>詳細なトラブルシューティングは <a href="README-STABLE.md" target="_blank">README-STABLE.md</a> を参照してください。</p>
+        </div>
     </div>
-    <script src="script.js"></script>
+    <script src="script-improved.js"></script>
 </body>
 </html>
